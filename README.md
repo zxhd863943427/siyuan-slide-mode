@@ -1,18 +1,17 @@
-# Vue 3 + TypeScript + Vite
+# 思源的演示模式
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个能把你的当前思源文档以幻灯片形式放映的东西，实力有限，可以抄的不多，故bug很多，凑合着用吧。
 
-## Recommended IDE Setup
+另外，有啥图标推荐？写的头昏了，先用之前的闪卡图标应付一下吧。
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+使用示例：
 
-## Type Support For `.vue` Imports in TS
+![Alt text](img/%E6%BC%94%E7%A4%BA%E6%A8%A1%E5%BC%8F.gif)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+感谢名单：
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+[zuoez02/siyuan-plugin-system: siyuan-plugin-system](https://github.com/zuoez02/siyuan-plugin-system) 提供了插件系统加载框架和 api ，万分感谢
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+[marp-team/marp-core: The core of Marp converter](https://github.com/marp-team/marp-core) 将 markdown 转换成幻灯片形式的 html
+
+[bespokejs/bespoke: DIY Presentation Micro-Framework](https://github.com/bespokejs/bespoke) 提供了 ppt 的转场效果。
