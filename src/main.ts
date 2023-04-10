@@ -1,11 +1,60 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
+import TopButton from './components/TopButton.vue'
+import {以id获取文档块markdown as getMarkdown} from "./utils/getMd"
+import {getFileID} from "./utils/utils"
 
-createApp(App).mount('#app')
+import { from } from "bespoke/lib/bespoke"
+import * as keys from 'bespoke-keys';
+import * as cube from "bespoke-theme-cube"
+import * as scale from "bespoke-scale"
+import * as voltaire from "bespoke-theme-voltaire"
+import * as progress from "bespoke-backdrop"
+import * as backdrop from "bespoke-progress"
 
-import {Marp} from "@marp-team/marp-core"
 
-var marp = new Marp()
-const {html, css} = marp.render('# 制卡故障\n\n开头部分\n\n---\n\n## 第一页\n\n一些测试文本\n\n---\n\n## 第二页\n\n$$\n\\sum_2^12x_2^2+2x^2\n$$\n\n‍\n')
-console.log(html,css)
+
+import { Plugin, Menu, clientApi } from 'siyuan'
+
+export default class CardPlugin extends Plugin{
+    public el: HTMLElement
+    constructor() {
+        super()
+        this.el = document.createElement('div')
+        this.el.classList.add('toolbar__item', 'b3-tooltips', 'b3-tooltips__se')
+        this.el.setAttribute('aria-label', '点击生成演示')
+    }
+
+    async onload() {
+        //加载本地配置
+        const button = createApp(TopButton)
+        button.mount(this.el)
+
+        //添加右键打开菜单功能
+        this.el.addEventListener('click', async (event) => {
+            const menu = document.createElement('div')
+            menu.id = "slide"
+            let fileId = getFileID()
+            console.log(fileId)
+            let markdownText = await getMarkdown(fileId)
+            console.log(markdownText)
+            const app = createApp(App,{markdownText:markdownText.content})
+            app.mount(menu)
+            new Menu('CardPlugin').addItem({ element: menu }).showAtMouseEvent(event)
+            from({ parent: '#slide .marpit' }, [
+                voltaire.default(),
+                keys.default(),
+                scale.default("tranform"),
+                progress.default(),
+                backdrop.default(),
+                scale.default()]);
+            event.stopPropagation()
+        })
+        clientApi.addToolbarLeft(this.el)
+
+    }
+    async onunload() {
+        this.el && this.el.remove();
+    }
+
+}
