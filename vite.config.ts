@@ -17,7 +17,7 @@ import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
-var debugMode:any = true;
+var debugMode:any = false;
 
 // https://vitejs.dev/config/
 export default defineConfig({
