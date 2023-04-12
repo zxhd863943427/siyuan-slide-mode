@@ -19,11 +19,13 @@ import { Plugin, Menu, Dialog, clientApi, serverApi } from 'siyuan'
 
 export default class CardPlugin extends Plugin {
     public el: HTMLElement
+    public settingConfig
     constructor() {
         super()
         this.el = document.createElement('div')
         this.el.classList.add('toolbar__item', 'b3-tooltips', 'b3-tooltips__se')
         this.el.setAttribute('aria-label', '点击生成演示')
+        this.settingConfig = {"ListBullet":"noThing"}
     }
 
     async onload() {
@@ -40,6 +42,14 @@ export default class CardPlugin extends Plugin {
             shortcut: "",
             description: "打开当前文档的演示模式",
             callback: this.openSlide()
+        })
+        this.registerCommand({
+            command: "show slide mode",
+            shortcut: "",
+            description: "切换演示模式列表渐进模式动画",
+            callback: ()=>{
+                this.settingConfig["ListBullet"] = (this.settingConfig["ListBullet"] === "li") ? "noThing" : "li"
+            }
         })
 
     }
@@ -59,7 +69,9 @@ export default class CardPlugin extends Plugin {
             from({ parent: '#slide-dialog .marpit' }, [
                 voltaire.default(),
                 // bullets.default("li"),
-                bullets.default(),
+                bullets.default(
+                    this.settingConfig["ListBullet"]
+                    ),
                 keys.default(),
                 scale.default("tranform"),
                 progress.default(),
