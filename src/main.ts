@@ -77,7 +77,10 @@ export default class CardPlugin extends Plugin {
                 progress.default(),
                 backdrop.default(),
             ])
-            event.stopPropagation()
+            if (event != null && event.stopPropagation != null){
+                console.log("stop")
+                event.stopPropagation()
+            }
         }
     }
     async onunload() {
