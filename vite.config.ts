@@ -114,7 +114,7 @@ export default defineConfig({
             name:"marp"
         },
         rollupOptions: {
-            external: ['siyuan'],
+            external: ['siyuan',"siyuan/api/server-api"],
             plugins: [
                 // Enable rollup polyfills plugin
                 // used during production bundling

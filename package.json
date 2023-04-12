@@ -16,6 +16,7 @@
     "@marp-team/marp-core": "^3.6.0",
     "@marp-team/marpit": "^2.4.2",
     "bespoke-backdrop": "^1.0.0",
+    "bespoke-bullets": "^1.1.0",
     "bespoke-keys": "^1.1.0",
     "bespoke-progress": "^1.0.0",
     "bespoke-scale": "^1.0.1",

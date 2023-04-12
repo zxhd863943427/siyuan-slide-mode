@@ -4,9 +4,10 @@ import { ref } from 'vue'
 import { Marp } from "@marp-team/marp-core"
 import { Element } from '@marp-team/marpit'
 
+var full = false;
 
 const props = defineProps({
-    markdownText: String
+  markdownText: String
 })
 
 var marp = new Marp({
@@ -14,15 +15,24 @@ var marp = new Marp({
   slideContainer: new Element('section', { class: 'slide' })
 })
 
- var { html, css } = marp.render(props.markdownText??"")
+var { html, css } = marp.render(props.markdownText ?? "")
 
 // console.log(html)
 
 
 function fullScreen() {
-  var htmlDom:HTMLDivElement = document.querySelector("#marp-slide")??document.createElement("div")
+  var htmlDom: HTMLDivElement = document.querySelector("#marp-slide") ?? document.createElement("div")
   htmlDom.requestFullscreen()
-  htmlDom.style.cssText= "zoom:4"
+  full = true;
+
+  htmlDom.onfullscreenchange = (ev) => {
+    if (full === true) {
+      htmlDom.style.cssText = "zoom:2"
+      full = false;
+      return;
+    }
+    htmlDom.style.cssText = ""
+  }
 }
 </script>
 
@@ -33,7 +43,7 @@ function fullScreen() {
       {{ css.replace("div.marpit>section", "div.marpit section") }}
     </component>
   </div>
-  <div class="bespoke-marp-osc" v-on:click="fullScreen()">full</div>
+  <div class="bespoke-marp-osc" v-on:click="fullScreen()">fullscreen</div>
 </template>
 
 <!-- <template>
@@ -79,8 +89,8 @@ function fullScreen() {
 
 }
 
-#marp-slide{
-  height:300px;
-  width:300px
+#marp-slide {
+  height: 420px;
+  width: 740px;
 }
 </style>
