@@ -112,4 +112,9 @@ function fullScreen() {
 #marp-slide .bespoke-slide{
   text-shadow: none !important;
 }
+
+div.marpit>section.slide>svg>foreignObject>section .task-list-item-checkbox {
+    margin: 0 .2em .1em -.4em !important;
+    zoom: 2;
+}
 </style>
