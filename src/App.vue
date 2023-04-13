@@ -3,6 +3,11 @@ import { ref } from 'vue'
 
 import { Marp } from "@marp-team/marp-core"
 import { Element } from '@marp-team/marpit'
+import { mark } from "@mdit/plugin-mark"
+import { sup } from "@mdit/plugin-sup"
+import { sub } from "@mdit/plugin-sub"
+import { tasklist } from "@mdit/plugin-tasklist"
+import { align } from "@mdit/plugin-align"
 
 var full = false;
 
@@ -15,6 +20,11 @@ var marp = new Marp({
   slideContainer: new Element('section', { class: 'slide' }),
   html:true
 })
+.use(mark)
+.use(sup)
+.use(sub)
+.use(tasklist)
+.use(align)
 
 var { html, css } = marp.render(props.markdownText ?? "")
 
