@@ -12,7 +12,8 @@ const props = defineProps({
 
 var marp = new Marp({
 
-  slideContainer: new Element('section', { class: 'slide' })
+  slideContainer: new Element('section', { class: 'slide' }),
+  html:true
 })
 
 var { html, css } = marp.render(props.markdownText ?? "")
@@ -92,5 +93,9 @@ function fullScreen() {
 #marp-slide {
   height: 420px;
   width: 740px;
+}
+
+#marp-slide .bespoke-slide{
+  text-shadow: none !important;
 }
 </style>
