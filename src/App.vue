@@ -38,7 +38,11 @@ function fullScreen() {
 
   htmlDom.onfullscreenchange = (ev) => {
     if (full === true) {
-      htmlDom.style.cssText = "zoom:2"
+      let bodyHeight = document.body.clientHeight
+      let bodyWidth = document.body.clientWidth
+      let zoomScale = Math.min(bodyWidth/740, bodyHeight/420)
+      console.log(bodyHeight,bodyWidth,zoomScale)
+      htmlDom.style.cssText = `zoom:${zoomScale}`
       full = false;
       return;
     }
